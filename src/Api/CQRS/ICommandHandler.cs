@@ -1,6 +1,4 @@
 //обработчики команд
-using MediatR;
-
 namespace Api.CQRS;
 
 public interface ICommandHandler<in TCommand>

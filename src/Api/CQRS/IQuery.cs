@@ -1,6 +1,4 @@
 //запрос (что я хочу получить)
-using MediatR;
-
 namespace Api.CQRS;
 
 public interface IQuery<out TResponse> : IRequest<TResponse>

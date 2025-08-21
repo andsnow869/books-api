@@ -1,6 +1,4 @@
 //это обработчик (как я получаю это)
-using MediatR;
-
 namespace Api.CQRS;
 
 public interface IQueryHandel<in TQuery, TResponse>
