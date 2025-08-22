@@ -1,3 +1,4 @@
+using Api.Data.Seed;
 using Marten;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddMarten(option =>   // Add.Marten сервис для работы с PostgreSQL.
 {
     option.Connection(connectionString); //указываем для Marten, какую строку подключения использовать для Postgres.
-});
+}).UseLightweightSessions().InitializeWith<InitializeBookDatabase>();
 
 var app = builder.Build(); //сборка
 

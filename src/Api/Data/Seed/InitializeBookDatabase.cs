@@ -20,7 +20,7 @@ public class InitializeBookDatabase : IInitialData  //класс InitializeBookD
         //session.Query<Book>() → запросить все записи типа Book
         //.AnyAsync() → вернёт true, если хоть одна книга есть.
         {
-            session.Store<Book>(new List<Book>());
+            session.Store<Book>(InitialData.Books); //получаем весь список книг
             //Сейчас в new List<Book>() список пустой, но обычно тут кладут «начальные книги» — например, одну-две тестовые записи)
             //session.Store<Book>(...) → подготовить данные к сохранению
             await session.SaveChangesAsync(cancellation);
