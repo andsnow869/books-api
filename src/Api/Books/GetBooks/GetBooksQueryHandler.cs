@@ -13,7 +13,7 @@ public record GetBooksResult(IEnumerable<Book> Books); //то коробка-о�
 
 
 //Обработчик (Handler) – тот, кто реально ищет книги
-public class GetBooksQueryHandler(DocumentSessionBase session) : IQueryHandel<GetBookQuery, GetBooksResult>
+public class GetBooksQueryHandler(IDocumentSession session) : IQueryHandel<GetBookQuery, GetBooksResult>
 //У него есть доступ к базе (session) — это как полка с настоящими книгами.
 //Он умеет брать бумажку-запрос GetBookQuery и давать коробку-ответ GetBooksResult.
 {
