@@ -1,6 +1,8 @@
 using Api.Data.Seed;
 using Marten;
 using Carter;
+using Api.Behaviors;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 //Чтение строки подключения
@@ -13,12 +15,17 @@ builder.Services.AddMarten(option =>   // Add.Marten сервис для раб�
 }).UseLightweightSessions().InitializeWith<InitializeBookDatabase>();
 
 
+var assembly = typeof(Program).Assembly;
 // Подключаем MediatR, чтобы можно было использовать запросы и обработчики
 // Он сам найдёт все классы-хэндлеры в этом проекте
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    //То есть не нужно вручную писать «для каждой команды подключить валидатор» — система делает это сама для любых команд.
 });
+
+builder.Services.AddValidatorsFromAssembly(assembly); //Подключают все валидаторы в проекте к DI, чтобы ValidationBehavior мог их использовать.
 
 builder.Services.AddCarter();
 
