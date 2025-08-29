@@ -1,5 +1,7 @@
+using System.Data;
 using Api.CQRS;
 using Api.Model;
+using FluentValidation;
 using Marten;
 
 namespace Api.Books.AppendBook;
@@ -14,6 +16,20 @@ public record AppendBookCommand(
     decimal Price,
     List<string> Category
 ) : ICommand<AppendBookResult>;
+
+public class AppendBookCommandValidator : AbstractValidator<AppendBookCommand>
+//AbstractValidator<T> — это класс из библиотеки FluentValidation, который умеет проверять объекты типа T. <AppendBookCommand> — значит, мы хотим проверять объекты AppendBookCommand.
+{
+    public AppendBookCommandValidator()
+    {
+        //говорим валидатору, чтобы он проверил, является ли Title пустым, если не прошло, выдаст сообщение об ошибке 
+        RuleFor(item => item.Title).NotEmpty().WithMessage("Title не может быть пустым");
+        RuleFor(item => item.Name).NotEmpty().WithMessage("Name не может быть пустым");
+        RuleFor(item => item.Description).NotEmpty().WithMessage("Description не может быть пустым");
+        RuleFor(item => item.Price).GreaterThan(0).WithMessage("Price должен быть больше 0");
+        RuleFor(item => item.Category).NotEmpty().WithMessage("Category не может быть пустым");
+    }
+}
 
 
 //описывает, в каком формате отдавать результат
