@@ -3,6 +3,7 @@ using Marten;
 using Carter;
 using Api.Behaviors;
 using FluentValidation;
+using Api.Exceptions.Handler;
 
 var builder = WebApplication.CreateBuilder(args);
 //Чтение строки подключения
@@ -29,7 +30,11 @@ builder.Services.AddValidatorsFromAssembly(assembly); //Подключают в�
 
 builder.Services.AddCarter();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>(); //добавляем свой обработчик в систему
+
 var app = builder.Build(); //сборка
+
+app.UseExceptionHandler(opt => { }); //включаем механизм глобальной обработки ошибок, чтобы мой обработчик реально работал при падениях
 
 // Регистрируем Carter, чтобы все модули (CarterModule) автоматически подключились
 // Все маршруты (endpoints) внутри этих модулей станут доступными
