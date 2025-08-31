@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +41,16 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
             Status = details.StatusCode,
             Instance = httpContext.Request.Path //пусть, в котором произошла ошибка, например,  "/api/books/5"
         };
+
+        if (exception is FluentValidation.ValidationException validationException)
+        //exception - объект ошибки, который где-то возник
+        //is — проверяет, является ли этот объект именно FluentValidation.ValidationException
+        //Если да, то создаётся новая переменная validationException, в которой хранится та же ошибка, но уже «приведённая» к правильному типу.
+        {
+            problems.Extensions.Add("Errors", validationException.Errors);
+            //problems — это объект ProblemDetails (специальный стандартный ответ в ASP.NET для ошибок)
+            //эта строка добавляет в ответ список всех ошибок проверки под ключом "Errors"
+        }
 
 
         //ошибка автоматически превращается в JSON и уходит клиенту

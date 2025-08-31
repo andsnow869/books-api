@@ -62,7 +62,7 @@ public class ValidationBehavior<TRequest, TResponse>
         //если есть хоть одна ошибка, останавливаем выполнение и выбрасываем исключение (throw new Exception)
         if (failures.Any())
         {
-            throw new Exception("Ошибка валидации");
+            throw new ValidationException(failures); //выбрасывается исключение ValidationException, в которое передается список ошибок failures
         }
 
         //если ошибок нет, пропускаем команду дальше (вызываем следующий обработчик)
