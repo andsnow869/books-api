@@ -1,3 +1,4 @@
+using Api.Model;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,16 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
         (string Detail, string Title, int StatusCode) details = exception switch
         //Detail - подробное описание (текст ошибки), Title - тип ошибки, StatusCode - HTTP статус (по умолчанию 500 Internal Server Error)
         {
+            //обработка конкретного исключения (исключение, если нет id)
+            BookNotFoundException =>
+            (
+              exception.Message,  //текст ошибки
+              exception.GetType().Name, //тип ошибки
+              httpContext.Response.StatusCode = StatusCodes.Status404NotFound
+            ), //код ответа задаем HTTP = 404(ресурс не найден, книга не найдена)
+
+
+            //общий перечень исключений
             _ => (
               exception.Message,  //текст ошибки
               exception.GetType().Name, //тип ошибки

@@ -1,4 +1,5 @@
 using Api.CQRS;
+using Api.Exceptions;
 using Api.Model;
 using FluentValidation;
 using Mapster;
@@ -57,7 +58,7 @@ public class UpdateBookCommandHandler(IDocumentSession session)
         //проверяем, найдена ли книга
         if (book is null)
         {
-            throw new Exception();
+            throw new BookNotFoundException(command.Id);
         }
 
 
