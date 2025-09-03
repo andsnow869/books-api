@@ -1,4 +1,3 @@
-using System.Data;
 using Api.CQRS;
 using Api.Model;
 using FluentValidation;
@@ -34,7 +33,7 @@ public class AppendBookCommandValidator : AbstractValidator<AppendBookCommand>
 
 //описывает, в каком формате отдавать результат
 //Когда книга сохранена в базу, система возвращает Id книги, чтобы мы знали, какая именно книга добавлена.
-public record AppendBookResult(Guid id);
+public record AppendBookResult(Guid Id);
 
 //обработчик, который сохраняет книгу в БД
 public class AppendBookCommandHandler(IDocumentSession session)
