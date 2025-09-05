@@ -22,6 +22,11 @@ var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(TimeoutBehavior<,>));
+    //Применяем TimeoutBehavior ко всем запросам и их ответам
+
+    //каждый раз когда идет какой-то запрос через MediatR, он проходит через TimeoutBehavior, а потом уже идет в настоящий обработчик
+
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     //То есть не нужно вручную писать «для каждой команды подключить валидатор» — система делает это сама для любых команд.
 });

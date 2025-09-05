@@ -34,6 +34,7 @@ public class GetBooksQueryHandler(IDocumentSession session) : IQueryHandel<GetBo
     //CancellationToken cancellationToken → специальный токен, с помощью которого можно отменить выполнение задачи (например, если пользователь закрыл приложение, чтобы не тратить ресурсы).
 
     {
+        // await Task.Delay(TimeSpan.FromSeconds(5)); //приостанавливает запрос на указанное время
         var books = await session.Query<Book>()
         //.ToListAsync(cancellationToken);
         .ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 5, cancellationToken);
