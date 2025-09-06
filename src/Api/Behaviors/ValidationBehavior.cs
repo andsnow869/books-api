@@ -1,4 +1,3 @@
-using Api.CQRS;
 using FluentValidation;
 
 namespace Api.Behaviors;

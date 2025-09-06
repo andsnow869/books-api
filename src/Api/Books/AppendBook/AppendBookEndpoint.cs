@@ -1,6 +1,3 @@
-using Carter;
-using Mapster;
-
 namespace Api.Books.AppendBook;
 
 //AppendBookRequest — это данные, которые приходят от клиента, когда он хочет добавить книгу (заголовок, автор, описание, цена и т.д.).

@@ -1,8 +1,3 @@
-using System.Reflection.Metadata;
-using Api.CQRS;
-using Marten;
-using Marten.Internal.Sessions;
-using Api.Model;
 using Marten.Pagination;
 
 namespace Api.Books.GetBooks; //пространство имён, где будет храниться логика получения книг.

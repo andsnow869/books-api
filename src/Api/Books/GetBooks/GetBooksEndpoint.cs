@@ -1,8 +1,4 @@
-
-using Carter;
 namespace Api.Books.GetBooks;
-using Api.Model;
-using Mapster;
 
 //GetBooksRequest — это маленький объект, который хранит параметры пагинации: какая страница и сколько элементов на странице.
 public record GetBooksRequest(int? PageNumber = 1, int? PageSize = 5);

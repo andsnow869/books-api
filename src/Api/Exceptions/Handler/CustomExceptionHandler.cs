@@ -1,4 +1,3 @@
-using Api.Model;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 

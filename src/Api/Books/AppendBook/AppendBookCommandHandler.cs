@@ -1,8 +1,3 @@
-using Api.CQRS;
-using Api.Model;
-using FluentValidation;
-using Marten;
-
 namespace Api.Books.AppendBook;
 
 //добавить новую книгу в базу
