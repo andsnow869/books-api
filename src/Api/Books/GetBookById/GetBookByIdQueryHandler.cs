@@ -1,5 +1,6 @@
 
 using Api.Exceptions;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace Api.Books.GetBookById;
 
@@ -7,6 +8,17 @@ namespace Api.Books.GetBookById;
 public record GetBookByIdQuery(string Id) : IQuery<GetBookByIdResult>;
 
 public record GetBookByIdResult(Book Item);
+
+public class GetBookByIdQueryValidator : AbstractValidator<GetBookByIdQuery>
+{
+    public GetBookByIdQueryValidator()
+    {
+        RuleFor(x => x.Id)
+            .NotEmpty().WithMessage("Id не может быть пустым")
+            .Must(id => Guid.TryParse(id, out _))
+            .WithMessage("Id не может быть пустым");
+    }
+}
 
 public class GetBookByIdQueryHandler(IDocumentSession session)
     : IQueryHandel<GetBookByIdQuery, GetBookByIdResult>

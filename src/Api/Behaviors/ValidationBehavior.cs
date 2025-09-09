@@ -17,7 +17,7 @@ public class ValidationBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
     //реализует интерфейс pipeline behavior (перехватчик в конвейере)
 
-    where TRequest : ICommand<TResponse>
+    where TRequest : IRequest<TResponse>
     //Ограничение: TRequest - должен быть командой, возвращающей TResponse
 
 {
