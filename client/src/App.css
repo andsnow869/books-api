@@ -1,3 +1,9 @@
-.App {
-  text-align: center;
+.card-hover:hover{
+    background-color: #f1f1f1;;
+}
+.card-hover{
+    transition: all 0.3s linear;
+}
+h5::first-letter {
+    color: #f8513c;
 }
