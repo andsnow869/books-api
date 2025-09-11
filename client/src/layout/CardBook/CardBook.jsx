@@ -1,16 +1,16 @@
 import React from "react";
 
-const CardBook = () => {
+const CardBook = (props) => {
     return(
            <div className="card card-hover ">
              <img src="https://picsum.photos/200" className="card-img-top" />
              <div className="card-body">
-               <h5 className="card-title">Евгений Онегин</h5>
-               <p className="card-name">Автор: Александр Пушкин</p>
-               <p className="card-id">id: 10000001-0000-0000-0000-000000000004</p>
-               <p className="card-price">Цена: 750.00</p>
-               <p className="card-category">Жанр: Поэзия, Классическая литература</p>
-               <p className="card-description"> Описание: Роман в стихах, повествующий о жизни молодого дворянина Евгения Онегина в Петербурге и российской провинции 1820-х годов.</p>
+               <h5 className="card-title">{props.title}</h5>
+               <p className="card-name">Автор: {props.name}</p>
+               <p className="card-id">id: {props.id}</p>
+               <p className="card-price">Цена: {props.price}</p>
+               <p className="card-category">Жанр: {props.category}</p>
+               <p className="card-description"> Описание: {props.description}</p>
              </div>
            </div>
     );
