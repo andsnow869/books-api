@@ -6,4 +6,15 @@
 }
 h5::first-letter {
     color: #f8513c;
+   
+}
+
+button{
+    background-color:#faecec;
+    padding: 7px 14px;
+    border: none;
+    transition: all 0.3s linear;
+}
+button:hover{
+    background-color: #ec7263;
 }
