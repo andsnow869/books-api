@@ -6,6 +6,7 @@ import FormBook from './layout/FormBook/FormBook';
 const App = () => {
   const [books, setBooks] = useState(
     [{
+      img:"https://picsum.photos/200",
       id: crypto.randomUUID(),
       title: "Евгений Онегин",
       name: "Александр Пушкин",
@@ -14,6 +15,7 @@ const App = () => {
       description: "Роман в стихах, повествующий о жизни молодого дворянина..."
     },
     {
+      img: "https://picsum.photos/200",
       id: crypto.randomUUID(),
       title: "Капитанская дочка",
       name: "Александр Пушкин",
@@ -22,6 +24,7 @@ const App = () => {
       description: "История о любви и долге во время крестьянской войны."
     },
     {
+      img: "https://picsum.photos/200",
       id:crypto.randomUUID(),
       title: "Мертвые души",
       name: "Николай Гоголь",
@@ -32,14 +35,15 @@ const App = () => {
   ]
   );
 
-const AddContact = () => {
+const AddContact = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, bookCategory, bookDescription) => {
   const item = {
+      img: bookImgUrl,
       id: crypto.randomUUID(),
-      title: "Мертвые души 5",
-      name: "Николай Гоголь 5",
-      price: 650,
-      category: "Реализм, Сатира",
-      description: "Роман о путешествии Чичикова по губерниям России."
+      title: bookTitle,
+      name: `${bookNameFirst} ${bookNameLast}`,
+      price: bookPrice,
+      category: bookCategory,
+      description: bookDescription
     };
     setBooks([...books, item]);
     console.log(books);
