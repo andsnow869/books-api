@@ -4,7 +4,7 @@
 .card-hover{
     transition: all 0.3s linear;
 }
-h5::first-letter {
+h5::first-letter , label::first-letter{
     color: #f8513c;
    
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
+import FormBook from './layout/FormBook/FormBook';
 
 const App = () => {
   const [books, setBooks] = useState(
@@ -51,11 +52,7 @@ const AddContact = () => {
         <div>
           <h1 className="card-header text-center">Список книг</h1>
           <ListBooks books = {books} />
-          <div>
-            <button 
-            className='m-3 rounded-2'
-            onClick={() => {AddContact()}}>Добавить книгу</button>
-          </div>
+          <FormBook AddContact = {AddContact} />
         </div>
       </div>
     </div>
