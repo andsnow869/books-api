@@ -1,7 +1,10 @@
+import React, { useState } from 'react';
 import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 
-const books = [{
+const App = () => {
+  const [books, setBooks] = useState(
+    [{
       id: crypto.randomUUID(),
       title: "Евгений Онегин",
       name: "Александр Пушкин",
@@ -25,7 +28,8 @@ const books = [{
       category: "Реализм, Сатира",
       description: "Роман о путешествии Чичикова по губерниям России."
     }
-  ];
+  ]
+  );
 
 const AddContact = () => {
   const item = {
@@ -36,11 +40,11 @@ const AddContact = () => {
       category: "Реализм, Сатира",
       description: "Роман о путешествии Чичикова по губерниям России."
     };
-    books.push(item);
+    setBooks([...books, item]);
     console.log(books);
     
 }
-const App = () => {
+
   return (
     <div className="container mt-5">
       <div className="card">
@@ -50,7 +54,7 @@ const App = () => {
           <div>
             <button 
             className='m-3 rounded-2'
-            onClick={() => {AddContact ()}}>Добавить книгу</button>
+            onClick={() => {AddContact()}}>Добавить книгу</button>
           </div>
         </div>
       </div>
