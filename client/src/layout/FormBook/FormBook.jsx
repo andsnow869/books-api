@@ -10,6 +10,13 @@ const FormBook = (props) =>{
     const [bookDescription, setBookDescription] = useState("");
 
     const submit = () => {
+        if (bookImgUrl.trim() === "" || bookTitle.trim() === ""
+           || bookNameFirst.trim() === "" || bookNameLast.trim() === ""
+           || bookPrice.trim() === "" || bookCategory.trim() === ""
+           || bookDescription.trim() === "") 
+           {
+            return;
+           }
         props.AddContact(
             bookImgUrl,
             bookTitle,
