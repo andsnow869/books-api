@@ -6,7 +6,7 @@ const ListBooks = (props) =>{
     return(       
       <div className="row g-3 m-3 justify-content-center">
         {books.map((book) => (
-            <div className="col-12 col-md-6 col-lg-4">
+            <div className="col-12 col-md-6 col-lg-4" key ={book.id}>
             <CardBook {...book} 
                 DeleteBook = {props.DeleteBook}/>
             </div>
