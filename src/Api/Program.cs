@@ -37,6 +37,14 @@ builder.Services.AddCarter();
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>(); //добавляем свой обработчик в систему
 
+builder.Services.AddCors(opt =>
+opt.AddPolicy("CorsPolicy", policy =>
+{
+    policy.AllowAnyMethod()
+    .AllowAnyHeader()
+    .WithOrigins("http://localhost:3000");
+}));
+
 var app = builder.Build(); //сборка
 
 app.UseExceptionHandler(opt => { }); //включаем механизм глобальной обработки ошибок, чтобы мой обработчик реально работал при падениях
@@ -44,4 +52,5 @@ app.UseExceptionHandler(opt => { }); //включаем механизм гло�
 // Регистрируем Carter, чтобы все модули (CarterModule) автоматически подключились
 // Все маршруты (endpoints) внутри этих модулей станут доступными
 app.MapCarter();
+app.UseCors("CorsPolicy");
 app.Run();
