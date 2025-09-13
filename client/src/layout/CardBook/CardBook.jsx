@@ -2,7 +2,9 @@ import React from "react";
 
 const CardBook = (props) => {
     return(
-           <div className="card card-hover  d-flex flex-column h-100">
+           <div className="card card-hover  d-flex flex-column h-100"
+              onClick={() => {props.DeleteBook(props.id)}}
+            >
              <img src={props.img} className="card-img-top" />
              <div className="card-body">
                <h5 className="card-title">{props.title}</h5>

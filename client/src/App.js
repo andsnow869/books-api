@@ -49,13 +49,18 @@ const AddBook = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, 
     
 }
 
+const DeleteBook = (id) =>{
+  setBooks(books.filter(item=>item.id !== id));
+}
+
 
   return (
     <div className="container mt-5">
       <div className="card">
         <div>
           <h1 className="card-header text-center">Список книг</h1>
-          <ListBooks books = {books} />
+          <ListBooks books = {books} 
+                     DeleteBook = {DeleteBook}/>
           <FormBook AddBook = {AddBook} />
         </div>
       </div>
