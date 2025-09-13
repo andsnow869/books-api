@@ -17,7 +17,7 @@ const FormBook = (props) =>{
            {
             return;
            }
-        props.AddContact(
+        props.AddBook(
             bookImgUrl,
             bookTitle,
             bookNameFirst,
@@ -69,6 +69,7 @@ const FormBook = (props) =>{
                     <div className="mb-3">
                         <label className="form-label">Стоимость книги:</label>
                         <input className="form-control" placeholder="700" type="number"
+                        value={bookPrice}
                         onChange = {(e) => {setBookPrice(e.target.value)}}
                         />
                     </div>

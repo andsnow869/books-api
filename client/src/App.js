@@ -35,7 +35,7 @@ const App = () => {
   ]
   );
 
-const AddContact = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, bookCategory, bookDescription) => {
+const AddBook = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, bookCategory, bookDescription) => {
   const item = {
       img: bookImgUrl,
       id: crypto.randomUUID(),
@@ -49,13 +49,14 @@ const AddContact = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPric
     
 }
 
+
   return (
     <div className="container mt-5">
       <div className="card">
         <div>
           <h1 className="card-header text-center">Список книг</h1>
           <ListBooks books = {books} />
-          <FormBook AddContact = {AddContact} />
+          <FormBook AddBook = {AddBook} />
         </div>
       </div>
     </div>
