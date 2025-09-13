@@ -46,7 +46,6 @@ const AddContact = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPric
       description: bookDescription
     };
     setBooks([...books, item]);
-    console.log(books);
     
 }
 
