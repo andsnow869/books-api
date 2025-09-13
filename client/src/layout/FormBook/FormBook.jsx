@@ -26,6 +26,13 @@ const FormBook = (props) =>{
             bookCategory,
             bookDescription
         );
+        setBookImgUrl("");
+        setBookTitle("");
+        setBookNameFirst("");
+        setBookNameLast("");
+        setBookPrice("");
+        setBookCategory("");
+        setBookDescription("");
     }
 
 
@@ -42,16 +49,19 @@ const FormBook = (props) =>{
                     <div className="mb-3">
                         <label className="form-label">Название книги:</label>
                         <input className="form-control" placeholder="Например: Евгений Онегин" type="text" 
+                        value={bookTitle}
                         onChange = {(e) => {setBookTitle(e.target.value)}}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Автор книги:</label>
                         <div className="d-flex">
-                            <input className="form-control me-3" placeholder="Александр" type="text" 
+                            <input className="form-control me-3" placeholder="Александр" type="text"
+                            value={bookNameFirst}
                             onChange = {(e) => {setBookNameFirst(e.target.value)}}
                             />
                             <input className="form-control" placeholder="Пушкин" type="text"
+                            value={bookNameLast}
                             onChange = {(e) => {setBookNameLast(e.target.value)}}
                             />
                         </div>
@@ -65,12 +75,14 @@ const FormBook = (props) =>{
                     <div className="mb-3">
                         <label className="form-label">Жанр книги:</label>
                         <input className="form-control" placeholder="Поэзия, Классика" type="text" 
+                        value={bookCategory}
                         onChange = {(e) => {setBookCategory(e.target.value)}}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Описание книги:</label>
                         <textarea className="form-control" placeholder="Краткое описание книги" type="text" rows={3}
+                        value={bookDescription}
                         onChange = {(e) => {setBookDescription(e.target.value)}}
                         ></textarea>
                     </div>
