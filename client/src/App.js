@@ -1,9 +1,15 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 import FormBook from './layout/FormBook/FormBook';
 
 const App = () => {
+  const url = "http://localhost:15000/books"
+  axios.get(url).then(
+    res => console.log(res.data)
+  );
+
   const [books, setBooks] = useState(
     [{
       img:"https://picsum.photos/200",
