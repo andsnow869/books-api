@@ -4,8 +4,10 @@ import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 import FormBook from './layout/FormBook/FormBook';
 
+const baseApiUrl = process.env.REACT_APP_API_URL; //адрес, на котором работает бэкенд (из файла .env)
+
 const App = () => {
-  const url = "http://localhost:15000/books"
+  const url = `${baseApiUrl}/books`;
   axios.get(url).then(
     res => console.log(res.data)
   );
