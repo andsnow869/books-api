@@ -3,7 +3,7 @@ using Marten.Pagination;
 namespace Api.Books.GetBooks; //пространство имён, где будет храниться логика получения книг.
 
 //В данном случае это "запрос" (Query), который мы отправим в систему через MediatR.
-public record GetBooksQuery(int? PageNumber = 1, int? PageSize = 5) : IQuery<GetBooksResult>;
+public record GetBooksQuery(int? PageNumber = 1, int? PageSize = 6) : IQuery<GetBooksResult>;
 //GetBookQuery - по сути — объект-запрос: «Дай мне список книг с такой-то страницы и с таким-то количеством элементов».
 
 //То есть, если не передать значения, по дефолту система возьмёт первую страницу и 5 элементов.
@@ -32,7 +32,7 @@ public class GetBooksQueryHandler(IDocumentSession session) : IQueryHandel<GetBo
         // await Task.Delay(TimeSpan.FromSeconds(5)); //приостанавливает запрос на указанное время
         var books = await session.Query<Book>()
         //.ToListAsync(cancellationToken);
-        .ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 5, cancellationToken);
+        .ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 6, cancellationToken);
         //session.Query<Book>() – библиотекарь идёт к полке и ищет все книги.
         //.ToListAsync(cancellationToken) – собирает их в список (коробку с книгами).
         //return new GetBooksResult(books) – отдаёт коробку тому, кто просил.

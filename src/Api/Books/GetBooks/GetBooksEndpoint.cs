@@ -1,7 +1,7 @@
 namespace Api.Books.GetBooks;
 
 //GetBooksRequest — это маленький объект, который хранит параметры пагинации: какая страница и сколько элементов на странице.
-public record GetBooksRequest(int? PageNumber = 1, int? PageSize = 5);
+public record GetBooksRequest(int? PageNumber = 1, int? PageSize = 6);
 
 
 //Это тип данных для ответа.  

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 import FormBook from './layout/FormBook/FormBook';
@@ -7,41 +7,15 @@ import FormBook from './layout/FormBook/FormBook';
 const baseApiUrl = process.env.REACT_APP_API_URL; //адрес, на котором работает бэкенд (из файла .env)
 
 const App = () => {
-  const url = `${baseApiUrl}/books`;
-  axios.get(url).then(
-    res => console.log(res.data)
-  );
 
-  const [books, setBooks] = useState(
-    [{
-      img:"https://picsum.photos/200",
-      id: crypto.randomUUID(),
-      title: "Евгений Онегин",
-      name: "Александр Пушкин",
-      price: 750,
-      category: "Поэзия, Классическая литература",
-      description: "Роман в стихах, повествующий о жизни молодого дворянина..."
-    },
-    {
-      img: "https://picsum.photos/200",
-      id: crypto.randomUUID(),
-      title: "Капитанская дочка",
-      name: "Александр Пушкин",
-      price: 500,
-      category: "Историческая проза",
-      description: "История о любви и долге во время крестьянской войны."
-    },
-    {
-      img: "https://picsum.photos/200",
-      id:crypto.randomUUID(),
-      title: "Мертвые души",
-      name: "Николай Гоголь",
-      price: 600,
-      category: "Реализм, Сатира",
-      description: "Роман о путешествии Чичикова по губерниям России."
-    }
-  ]
-  );
+  const [books, setBooks] = useState([]);
+
+  const url = `${baseApiUrl}/books`;
+  useEffect (() =>{
+    axios.get(url).then(
+    res => setBooks(res.data.books))
+}, []);
+
 
 const AddBook = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, bookCategory, bookDescription) => {
   const item = {
