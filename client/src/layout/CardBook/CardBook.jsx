@@ -11,7 +11,7 @@ const CardBook = (props) => {
                <p className="card-name">Автор: {props.bookNameFirst} {props.bookNameLast}</p>
                <p className="card-id">id: {props.id}</p>
                <p className="card-price">Цена: {props.price}</p>
-               <p className="card-category">Жанр: {props.category}</p>
+               <p className="card-category">Жанр: {Array.isArray(props.category) ? props.category.join(", ") : props.category}</p>
                <p className="card-description"> Описание: {props.description}</p>
              </div>
            </div>

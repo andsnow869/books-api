@@ -24,9 +24,10 @@ const AddBook = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, 
       title: bookTitle,
       name: `${bookNameFirst} ${bookNameLast}`,
       price: bookPrice,
-      category: bookCategory,
+      category: Array.isArray(bookCategory) ? bookCategory : [bookCategory],
       description: bookDescription
     };
+    axios.post(url, item)
     setBooks([...books, item]);
     
 }
