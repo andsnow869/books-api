@@ -5,7 +5,7 @@ const CardBook = (props) => {
            <div className="card card-hover  d-flex flex-column h-100"
               onClick={() => {props.DeleteBook(props.id)}}
             >
-             <img src={props.img} className="card-img-top" />
+             <img src="https://dummyimage.com/400x400/000/fff" className="card-img-top" />
              <div className="card-body">
                <h5 className="card-title">{props.title}</h5>
                <p className="card-name">Автор: {props.bookNameFirst} {props.bookNameLast}</p>
