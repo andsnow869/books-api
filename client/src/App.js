@@ -27,14 +27,17 @@ const AddBook = (bookImgUrl, bookTitle, bookNameFirst, bookNameLast, bookPrice, 
       category: Array.isArray(bookCategory) ? bookCategory : [bookCategory],
       description: bookDescription
     };
-    axios.post(url, item)
+    axios.post(url, item);
     setBooks([...books, item]);
     
 }
 
 const DeleteBook = (id) =>{
+  const url = `${baseApiUrl}/books/${id}`
+  axios.delete(url);
   setBooks(books.filter(item=>item.id !== id));
 }
+
 
 
   return (
