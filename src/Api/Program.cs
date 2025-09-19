@@ -13,7 +13,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddMarten(option =>   // Add.Marten сервис для работы с PostgreSQL.
 {
     option.Connection(connectionString); //указываем для Marten, какую строку подключения использовать для Postgres.
-}).UseLightweightSessions().InitializeWith<InitializeBookDatabase>();
+}).UseLightweightSessions()
+//.InitializeWith<InitializeBookDatabase>()
+.InitializeWith<PostgresEfFakerInitializer>();
 
 
 var assembly = typeof(Program).Assembly;
