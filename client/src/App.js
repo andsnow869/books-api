@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 import FormBook from './layout/FormBook/FormBook';
+import { Route, Routes } from 'react-router-dom';
 
 const baseApiUrl = process.env.REACT_APP_API_URL; //адрес, на котором работает бэкенд (из файла .env)
 
@@ -42,14 +43,19 @@ const DeleteBook = (id) =>{
 
   return (
     <div className="container mt-5">
-      <div className="card">
-        <div>
-          <h1 className="card-header text-center">Список книг</h1>
-          <ListBooks books = {books} 
+      <Routes> {/* чтобы было понимание, на какой странице мы хотим отображать */}
+        <Route path = "/" element ={
+          <div className="card">
+          <div>
+            <h1 className="card-header text-center">Список книг</h1>
+            <ListBooks books = {books} 
                      DeleteBook = {DeleteBook}/>
-          <FormBook AddBook = {AddBook} />
+            <FormBook AddBook = {AddBook} />
+          </div>
         </div>
-      </div>
+        } />
+        <Route path="books/:id" element = {<>Hello</>} />
+      </Routes>
     </div>
   );
 }
