@@ -4,6 +4,7 @@ import './App.css';
 import ListBooks from './layout/CardBook/components/ListBooks';
 import FormBook from './layout/FormBook/FormBook';
 import { Route, Routes } from 'react-router-dom';
+import BookDetails from './layout/BookDetails/BookDetails';
 
 const baseApiUrl = process.env.REACT_APP_API_URL; //адрес, на котором работает бэкенд (из файла .env)
 
@@ -54,7 +55,7 @@ const DeleteBook = (id) =>{
           </div>
         </div>
         } />
-        <Route path="books/:id" element = {<>Hello</>} />
+        <Route path="books/:id" element = {<BookDetails/>} />
       </Routes>
     </div>
   );
