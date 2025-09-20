@@ -6,7 +6,13 @@ public record GetBooksRequest(int? PageNumber = 1, int? PageSize = 6);
 
 //Это тип данных для ответа.  
 //Когда пользователь спросит `/books`, мы вернём объект `GetBooksResponse`, внутри которого список книг.
-public record GetBooksResponse(IEnumerable<Book> Books);
+public record GetBooksResponse(
+    IEnumerable<Book> Books,
+    int TotalItems,
+    int PageNumber,
+    int PageSize,
+    int TotalPages
+);
 
 public class GetBooksEndpoint : ICarterModule
 {

@@ -8,14 +8,21 @@ public record GetBooksQuery(int? PageNumber = 1, int? PageSize = 6) : IQuery<Get
 
 //То есть, если не передать значения, по дефолту система возьмёт первую страницу и 5 элементов.
 
-public record GetBooksResult(IEnumerable<Book> Books); //то коробка-ответ.
-//В ней хранится список (IEnumerable) книг (Book).
+public record GetBooksResult(
+    IEnumerable<Book> Books,
+    int TotalItems,
+    int PageNumber,
+    int PageSize,
+    int TotalPages
+    );
+//то коробка-ответ. //В ней хранится список (IEnumerable) книг (Book).
 
 
 //Обработчик (Handler) – тот, кто реально ищет книги
 public class GetBooksQueryHandler(IDocumentSession session) : IQueryHandel<GetBooksQuery, GetBooksResult>
 //У него есть доступ к базе (session) — это как полка с настоящими книгами.
 //Он умеет брать бумажку-запрос GetBookQuery и давать коробку-ответ GetBooksResult.
+
 {
     public async Task<GetBooksResult> Handle(GetBooksQuery query, CancellationToken cancellationToken)
     //Метод Handle – «выполнить запрос»
@@ -30,12 +37,25 @@ public class GetBooksQueryHandler(IDocumentSession session) : IQueryHandel<GetBo
 
     {
         // await Task.Delay(TimeSpan.FromSeconds(5)); //приостанавливает запрос на указанное время
-        var books = await session.Query<Book>()
+        //var books = await session.Query<Book>()
         //.ToListAsync(cancellationToken);
-        .ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 6, cancellationToken);
+        //.ToPagedListAsync(query.PageNumber ?? 1, query.PageSize ?? 6, cancellationToken);
         //session.Query<Book>() – библиотекарь идёт к полке и ищет все книги.
         //.ToListAsync(cancellationToken) – собирает их в список (коробку с книгами).
         //return new GetBooksResult(books) – отдаёт коробку тому, кто просил.
-        return new GetBooksResult(books);
+        //return new GetBooksResult(books);
+
+        var pageNumber = query.PageNumber ?? 1;
+        var pageSize = query.PageSize ?? 6;
+        var totalItems = await session.Query<Book>().CountAsync(cancellationToken);
+        var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+        var items = await session.Query<Book>()
+            .OrderBy(b => b.Title)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return new GetBooksResult(items, totalItems, pageNumber, pageSize, totalPages);
     }
 }
